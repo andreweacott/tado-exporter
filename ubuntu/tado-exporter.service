@@ -1,0 +1,12 @@
+[Unit]
+Description=Tado Exporter
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --name tado-exporter --env-file /etc/tado-exporter/tado-exporter.env -p 9367:9367 tado-exporter:latest
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
